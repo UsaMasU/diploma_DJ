@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'menu.html' with active_page="main" menu=drop_menu %}
+
+
+  <main role="main">
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">Добро пожаловать на сайт магазина</h1>
+        <p>Лучшие мобилы только у нас:</p>
+        {% include 'app_articles/articles.html' with articles=articles_phones %}
+      </div>
+    </div>
+
+    <div class="container mb-5">
+      <!-- Example row of columns -->
+
+      <div class="row">
+          {% for phone in phones %}
+            {% include 'app_eshop/product_snippet.html' with product=phone product_url=phone.section.slug %}
+          {%endfor%}
+      </div>
+    </div> <!-- /container -->
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">Не знаете что одеть летом?</h1>
+        <p>Вот что мы можем предложить:</p>
+        {% include 'app_articles/articles.html' with articles=articles_other %}
+      </div>
+    </div>
+
+    <div class="container mb-5">
+      <!-- Example row of columns -->
+      <div class="row">
+        {% for product in other_products %}
+          {% include 'app_eshop/product_snippet.html' with product=product product_url=product.section %}
+        {%endfor%}
+      </div>
+
+      </div>
+    </div> <!-- /container -->
+  </main>
+
+{% endblock %}
