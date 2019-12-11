@@ -29,7 +29,14 @@
         <input type="hidden" name="products" value="{{products}}">
         <input type="hidden" name="qty_common" value="{{qty_common}}">
         <input type="hidden" name="price_common" value="{{price_common}}">
-        <button type="submit" class="btn btn-secondary">Заказать</button>
+
+        {% if request.user.is_authenticated %}
+          <button type="submit" class="btn btn-secondary">Заказать</button>
+        {% else %}
+          <button type="submit" disabled class="btn btn-secondary">Заказать</button>
+          <br>
+          <a href="/account/login" class="text-center badge badge-warning">НЕОБХОДИМА АВТОРИЗАЦИЯ!</a>
+        {% endif %}
       </form>
     </div>
   </div>

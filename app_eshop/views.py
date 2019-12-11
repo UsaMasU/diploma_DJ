@@ -113,7 +113,7 @@ def product(request, slug):
         return render(request, template, context)
 
 
-@login_required(login_url="/")
+#@login_required(login_url="/")
 def cart(request):
     template = 'app_eshop/cart.html'
     if request.method == 'POST':
