@@ -22,7 +22,7 @@ class Section(models.Model):
     name = models.CharField(verbose_name='Name', max_length=30)
     template_name = models.CharField(max_length=30, choices=TEMPLATE, default='Разный')
     location = models.CharField(max_length=30, choices=LOCATION, default='---')
-    slug = models.SlugField(max_length=100, default=0)
+    slug = models.SlugField(max_length=100)
 
     def __str__(self):
         return str(self.name)

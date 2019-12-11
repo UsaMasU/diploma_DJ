@@ -1,9 +1,5 @@
 import urllib.parse
 from django.core.paginator import Paginator
-from .models import Section
-
-
-drop_menu = Section.objects.all()
 
 
 def pagination(request, model_obj, objects_to_page):

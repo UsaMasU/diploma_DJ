@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from .models import Product, Review, Phone, Cultural, Miscellaneous, Section, Cart, ProductsInCart
 from .forms import ReviewForm
-from .functions import pagination, cart_parse, drop_menu
+from .functions import pagination, cart_parse
 
 from app_articles.models import Article
 
@@ -35,7 +35,6 @@ def main(request):
         'articles_phones': articles_phones,
         'articles_other': articles_other
     }
-    context.update({'drop_menu': drop_menu})
     return render(request, template_name, context)
 
 
@@ -44,15 +43,12 @@ def gadgets(request, slug):
     menu_section = Section.objects.get(slug=slug)
     context = pagination(request, Product.objects.filter(section__name=str(menu_section)).order_by("id"), 3)
     context.update({'title': menu_section})
-    context.update({'drop_menu': drop_menu})
     return render(request, template_name, context)
 
 
 def accessories(request):
     template_name = 'app_eshop/accessories.html'
-    context = {
-        'drop_menu': drop_menu
-    }
+    context = {}
     return render(request, template_name, context)
 
 
@@ -114,7 +110,6 @@ def product(request, slug):
             'name_url': name_url,
             'detailed': product_detailed
         }
-        context.update({'drop_menu': drop_menu})
         return render(request, template, context)
 
 
@@ -139,7 +134,6 @@ def cart(request):
         context = {
             'status': 'order send'
         }
-        context.update({'drop_menu': drop_menu})
         return render(request, template, context)
     else:
         if not ('cart' in request.session):
@@ -173,6 +167,5 @@ def cart(request):
             'products': cart_optimize,
             'status': 'processing'
         }
-        context.update({'drop_menu': drop_menu})
         return render(request, template, context)
 
