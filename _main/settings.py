@@ -135,6 +135,10 @@ STATICFILES_DIRS = [
 
 #STATIC_ROOT = 'static/'
 
+FIXTURE_DIRS = (
+   '/fixtures/',
+)
+
 try:
     from .settings_local import *
 except ImportError:
